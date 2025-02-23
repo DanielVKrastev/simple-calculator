@@ -10,8 +10,6 @@ function App() {
       symbol = Number(symbol);
     }
 
-    // TODO: +/-
-
     const calcField = document.getElementById('calc-field');
     const textCalcField = calcField.value;
     const previousSymbol = textCalcField[textCalcField.length - 1];
@@ -39,14 +37,11 @@ function App() {
     }
 
     calcField.value += symbol;
-
   }
 
   const clearField = (e) => {
     document.getElementById('calc-field').value = '0';
   };
-
-
 
   const calculate = () => {
     const calcField = document.getElementById('calc-field');
@@ -55,8 +50,7 @@ function App() {
     const mathExpression = math.evaluate(textCalcField);
     const result = Math.round((mathExpression + Number.EPSILON) * 100) / 100; // example 0.1 + 0.2
     calcField.value = result;
-    
-  }
+  };
 
 
   return (
@@ -78,7 +72,7 @@ function App() {
         <span className="num" onClick={addSymbolInField}><i>1</i></span>
         <span className="num" onClick={addSymbolInField}><i>2</i></span>
         <span className="num" onClick={addSymbolInField}><i>3</i></span>
-        <span className="num" onClick={addSymbolInField}><i>+/-</i></span>
+        <span className="num" onClick={addSymbolInField}><i>%</i></span>
         <span className="num" onClick={addSymbolInField}><i>0</i></span>
         <span className="num" onClick={addSymbolInField}><i>.</i></span>
 
