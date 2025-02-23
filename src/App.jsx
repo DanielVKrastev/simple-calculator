@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import * as  math from 'mathjs';
 import './App.css'
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     const textCalcField = calcField.value;
     const previousSymbol = textCalcField[textCalcField.length - 1];
 
-    if(typeof(symbol) === 'number' && textCalcField[0] === '0'){
+    if(typeof(symbol) === 'number' && textCalcField[0] === '0' && textCalcField.length === 1){
       calcField.value = '';
     }
 
@@ -44,6 +44,9 @@ function App() {
     const calcField = document.getElementById('calc-field');
     const textCalcField = calcField.value;
 
+    const mathExpression = math.evaluate(textCalcField);
+    calcField.value = mathExpression;
+    
   }
 
 
