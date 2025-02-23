@@ -18,19 +18,26 @@ function App() {
       calcField.value = '';
     }
 
+    let inputText = textCalcField + symbol;
+
     if(typeof(symbol) === 'string'){
       switch (previousSymbol) {
         case '.':
+          return;
         case '*':
         case '/':
         case '-':
         case '+':
-          return;
-      }
+          if(symbol != '.'){
+              calcField.value = inputText.substr(0, inputText.length - 2);
+            }else{
+              return;
+            }
+            break;
+        }
     }
     
-    let inputText = textCalcField + symbol;
-    
+    // Regex for double dots (example: 0.2 + 0.1.2)
     const regexForDot = /\d+\.\d*\./;
     if(inputText.match(regexForDot)){
       return;
