@@ -1,8 +1,28 @@
-# React + Vite
+# Simple Calculator with React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div>
+  <img src="https://github.com/DanielVKrastev/simple-calculator/blob/main/public/calc-screenshot.png?raw=true" width="250px">
+</div>
 
-Currently, two official plugins are available:
+<div>
+  
+  ## Project Summary
+  This project was developed using an HTML and CSS template in React.
+  
+  ## Main Objectives
+  This project was built with React to demonstrate how a React application works.
+  If you're interested, you can visit the project website at the following link:
+  
+  <a href="https://danielvkrastev.github.io/simple-calculator/" target="_blank">
+      Visit Project
+  </a>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  ## Install local project
+  First Run the following command to install all required dependencies:
+  <p><b><i>npm i</i></b></p>
+  Second start the development server using:
+  <p><b><i>npm start</i></b></p>
+  Open the Project in Your Browser <a href="http://localhost:5173/simple-calculator/">http://localhost:5173/simple-calculator/</a>.
+</div>
+
+
