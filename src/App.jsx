@@ -1,10 +1,18 @@
 import * as  math from 'mathjs';
+import { useEffect } from 'react';
+
 import './App.css';
 
 function App() {
   
   const addSymbolInField = (e) => {
-    let symbol = e.target.innerText;
+    let symbol = '';
+    if( typeof e === 'object'){
+      symbol = e.target.innerText;
+    }else{
+      symbol = e;
+    }
+    
     const regex = /^[0-9]/;
     if(symbol.match(regex)){
       symbol = Number(symbol);
@@ -14,13 +22,11 @@ function App() {
     const textCalcField = calcField.value;
     const previousSymbol = textCalcField[textCalcField.length - 1];
 
-    if(typeof(symbol) === 'number' && textCalcField[0] === '0' && textCalcField.length === 1){
-      calcField.value = '';
-    }
-
     let inputText = textCalcField + symbol;
 
-    if(typeof(symbol) === 'string'){
+    if(typeof(symbol) === 'number' && textCalcField[0] === '0' && textCalcField.length === 1){
+      calcField.value = ''; // Clear 0
+    }else if(typeof(symbol) === 'string'){
       switch (previousSymbol) {
         case '.':
           return;
@@ -34,16 +40,16 @@ function App() {
               return;
             }
             break;
-        }
+      }
     }
-    
+
     // Regex for double dots (example: 0.2 + 0.1.2)
     const regexForDot = /\d+\.\d*\./;
     if(inputText.match(regexForDot)){
       return;
     }
 
-    calcField.value += symbol;
+    return calcField.value += symbol;
   }
 
   const clearField = (e) => {
@@ -58,6 +64,25 @@ function App() {
     const result = Math.round((mathExpression + Number.EPSILON) * 100) / 100; // example 0.1 + 0.2
     calcField.value = result;
   };
+
+  // UseEffect for input with keyboard (only buttons: 0-9 . * - / + Backspace c)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if(/^[0-9.\/*\-\+]/.test(e.key)){
+        addSymbolInField(e.key);
+      }else if(e.key === 'Enter'){
+        calculate();
+      }else if(e.key === 'c' || e.key === 'Backspace'){
+        clearField();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
 
   return (
@@ -90,4 +115,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
